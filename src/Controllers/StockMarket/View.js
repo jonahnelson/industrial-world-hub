@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { Dollarize } from '../../Utilities';
+import { Dollarize, GenerateId } from '../../Utilities';
 import Chart from './Subcomponents/Chart';
 
 const StockMarket = () => {
   const [money, setMoney] = useState(1000);
+
+  console.log(GenerateId());
 
   const [companies, setCompanies] = useState([
     {
