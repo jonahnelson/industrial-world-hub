@@ -1,24 +1,74 @@
+import { useState } from 'react';
+import { Dollarize } from '../../Utilities';
+import Chart from './Subcomponents/Chart';
+
 const StockMarket = () => {
-    const companies = [
-        {name: "Joner's Pumpkins"},
-        {name: "Mining Stuff"},
-        {name: "Construction Obstruction"}
-    ]
-    return (
-        <div className="bg-black min-h-screen">
-            <p>Stock Market</p>
-            {companies.map(company => <Chart company={company}/>
-            )}
-        </div>
-    )
-}
+  const [money, setMoney] = useState(1000);
 
-const Chart = ({company}) => {
-    console.log('company', company)
-    return <div className='p-5 m-5 border border-gray-300 shadow bg-gray-600'>
-        <p className="text-white">{company.name}</p>
+  const [companies, setCompanies] = useState([
+    {
+      name: "Joner's Pumpkins",
+      id: '1',
+      sharesSnapshots: [
+        {
+          time: new Date().getTime(),
+          sharesOwned: 10,
+          sharesIssued: 1000,
+          companyValue: 1000,
+        },
+        {
+          time: new Date().getTime() + 1000,
+          sharesOwned: 15,
+          sharesIssued: 1000,
+          companyValue: 1000,
+        },
+      ],
+    },
+    {
+      name: 'Mining Stuff',
+      id: '2',
+      sharesSnapshots: [
+        {
+          time: new Date().getTime(),
+          sharesOwned: 10,
+          sharesIssued: 1000,
+          companyValue: 1000,
+        },
+      ],
+    },
+    {
+      name: 'Construction Obstruction',
+      id: '3',
+      sharesSnapshots: [
+        {
+          time: new Date().getTime(),
+          sharesOwned: 10,
+          sharesIssued: 1000,
+          companyValue: 1000,
+        },
+      ],
+    },
+  ]);
 
+  return (
+    <div className='bg-black min-h-screen'>
+      <p className='text-sky-500 text-center text-3xl font-bold py-4'>
+        Stock Market
+      </p>
+      <p className='text-white text-center font-bold'>
+        {Dollarize(money, true)} TO USE
+      </p>
+      {companies.map((company) => (
+        <Chart
+          company={company}
+          companies={companies}
+          setCompanies={setCompanies}
+          money={money}
+          setMoney={setMoney}
+        />
+      ))}
     </div>
-}
+  );
+};
 
 export default StockMarket;
