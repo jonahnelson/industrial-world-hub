@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import {
-  CartesianGrid,
   Line,
   LineChart,
   ResponsiveContainer,
@@ -52,9 +51,7 @@ const Chart = ({ company, companies, setCompanies, money, setMoney }) => {
       setMoney(money - transactionTotal);
 
       let newSharesIssued = Number(latestSharesSnapshot.sharesIssued);
-      /*       if (newSharesOwned == newSharesIssued) {
-          newSharesIssued += 100;
-        } */
+
       const newShareSnapshot = {
         time: new Date().getTime(),
         sharesOwned: newSharesOwnedAfterBuy,
